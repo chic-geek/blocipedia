@@ -15,20 +15,20 @@
           %li= link_to "Home", root_path
 
       / FLASH MESSAGES
-      -#- if flash[:notice]
-        /.alert.alert-success
-          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
-          -#= flash[:notice]
+      - if flash[:notice]
+        .alert.alert-success
+          %button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          = flash[:notice]
 
-      -#- elsif flash[:error]
-        /.alert.alert-danger
-          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
-          -#= flash[:error]
+      - elsif flash[:error]
+        .alert.alert-danger
+          %button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          = flash[:error]
 
-      -#- elsif flash[:alert]
-        /.alert.alert-warning
-          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
-          -#= flash[:alert]
+      - elsif flash[:alert]
+        .alert.alert-warning
+          %button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          = flash[:alert]
 
       .row
         .col-xs-12
