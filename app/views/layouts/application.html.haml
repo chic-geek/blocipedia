@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Blocipedia
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    .container
+
+      %header.mast-head
+        %ul.nav.nav-tabs.nav-core
+          %li= link_to "Home", root_path
+
+      / FLASH MESSAGES
+      -#- if flash[:notice]
+        /.alert.alert-success
+          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          -#= flash[:notice]
+
+      -#- elsif flash[:error]
+        /.alert.alert-danger
+          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          -#= flash[:error]
+
+      -#- elsif flash[:alert]
+        /.alert.alert-warning
+          /%button.close{:type => "button", "data-dismiss" => "alert"}&times;
+          -#= flash[:alert]
+
+      .row
+        .col-xs-12
+          = yield
