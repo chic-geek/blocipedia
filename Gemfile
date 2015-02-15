@@ -7,9 +7,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Installing Bootstrap-sass for rails
 gem 'bootstrap-sass', '~> 3.3.3'
 
@@ -60,16 +57,27 @@ gem 'figaro', '1.1.0'
 ## GROUPED GEMS
 ## ==========================================================================================
 
-group :test do
+group :production do
+  # Use PostGres for Heroku production deployment
+  gem 'pg'
 
+  # rails_12factor allows the Rails 4 asset pipeline to run properly on Heroku.
+  gem 'rails_12factor'
 end
 
 group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 
+  # Faker gem creates fake content with which to seed the db
+  gem 'faker'
 end
 
-group :production do
-
+group :test do
+  gem 'email_spec'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', require: false
+  gem 'chromedriver-helper'
 end
 
 group :development, :test do
@@ -81,4 +89,9 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Install rspec, factory_girl and capybara for writing tests.
+  gem 'rspec-rails', '~> 3.1'
+  gem 'factory_girl_rails', '~> 4.5'
+  gem 'capybara'
 end
