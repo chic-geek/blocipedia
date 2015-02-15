@@ -1,0 +1,3 @@
+## These ENV vars are being used in this application:
+SENDGRID_USER:
+SENDGRID_PASSWORD:
