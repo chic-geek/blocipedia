@@ -35,6 +35,7 @@ end
 group :development do
   gem 'sqlite3'                                   # Use sqlite3 as the database for Active Record
   gem 'faker'                                     # Faker gem creates fake content with which to seed the db
+  # gem 'guard-rspec', require: false               # Guard with watch for changes on your app and re-run the tests automagically.
 end
 
 group :test do
