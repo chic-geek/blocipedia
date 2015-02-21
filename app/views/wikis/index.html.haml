@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    %h1 My Wikis
+
+    .well.well-sm
+      = link_to "New wiki", new_wiki_path, class: "btn btn-primary btn-sm"
+
+    .list-group
+      - @wikis.each do |wiki|
+        .list-group-item= link_to wiki.title, wiki

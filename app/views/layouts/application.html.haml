@@ -13,6 +13,9 @@
       %header.mast-head
         %ul.nav.nav-tabs.nav-core
           %li= link_to "Home", root_path
+          - if current_user
+            %li= link_to "My Wikis", wikis_path
+
           .pull-right.user-info
             - if current_user
               Hello #{current_user.email}! #{link_to "Sign out", destroy_user_session_path, method: :delete}
