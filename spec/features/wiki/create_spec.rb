@@ -30,6 +30,6 @@ feature 'Wiki creation', type: :feature do
     expect(current_path).to eq(wiki_path(Wiki.last))
   end
 
-  ## Anonymous user unable to create wiki
+  ## TODO: test for anonymous user unable to create wiki
 
 end

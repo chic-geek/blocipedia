@@ -1,12 +1,7 @@
 class WikisController < ApplicationController
-  def index
-    @wikis = current_user.wikis
-  end
+  before_action :authenticate_user!
 
-  def show
-    @wiki = current_user.wikis.find(params[:id])
-  end
-
+  ## create
   def new
     @wiki = Wiki.new
   end
@@ -21,12 +16,23 @@ class WikisController < ApplicationController
     end
   end
 
+  ## read
+  def index
+    @wikis = current_user.wikis
+  end
+
+  def show
+    @wiki = current_user.wikis.find(params[:id])
+  end
+
+  ## update
   def edit
   end
 
   def update
   end
 
+  ## delete
   def destroy
   end
 end
