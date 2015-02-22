@@ -7,4 +7,11 @@
 
     .list-group
       - @wikis.each do |wiki|
-        .list-group-item= link_to wiki.title, wiki
+
+        .list-group-item
+          = link_to wiki.title, wiki
+
+          .pull-right
+            = link_to "", edit_wiki_path(wiki), class: "glyphicon glyphicon-edit text-muted", title: "edit-item"
+            \&nbsp;
+            = link_to "", wiki, class: "glyphicon glyphicon-trash text-danger", title: "delete-item", :method => :delete

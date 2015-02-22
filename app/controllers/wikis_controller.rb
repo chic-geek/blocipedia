@@ -27,12 +27,22 @@ class WikisController < ApplicationController
 
   ## update
   def edit
+    @wiki = current_user.wikis.find(params[:id])
   end
 
   def update
+    @wiki = current_user.wikis.find(params[:id])
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+      redirect_to wiki_path(@wiki), notice: "Your wiki entry has been updated!"
+    else
+      render "edit"
+    end
   end
 
   ## delete
   def destroy
+    @wiki = current_user.wikis.find(params[:id])
+    @wiki.destroy
+    redirect_to wikis_path, :notice => "Your wiki has been deleted."
   end
 end

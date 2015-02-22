@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-feature 'Wiki edit/update', type: :feature do
-
-  scenario "edit/update wiki entry" do
+feature 'wiki', type: :feature do
+  scenario "update a wiki entry" do
 
     # test data creation
     user = create(:user, email: "test@email.com", password: "test-password")
@@ -29,7 +28,5 @@ feature 'Wiki edit/update', type: :feature do
     # localhost:3000/wikis/1
     expect(page).to have_content("Dogs")
     expect(page).to have_content("Dogs are a wonderful pet, they require lots of attention and exercise!")
-
   end
-
 end

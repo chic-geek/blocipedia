@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-feature 'Wiki creation', type: :feature do
-
-  scenario "create wiki" do
+feature 'wiki', type: :feature do
+  scenario "create a wiki entry" do
     # test data creation
     create(:user, email: "test@email.com", password: "test-password")
 
@@ -29,7 +28,4 @@ feature 'Wiki creation', type: :feature do
     expect(page).to have_content("Sports content for all your sporting needs.")
     expect(current_path).to eq(wiki_path(Wiki.last))
   end
-
-  ## TODO: test for anonymous user unable to create wiki
-
 end
