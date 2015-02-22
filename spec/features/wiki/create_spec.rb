@@ -12,12 +12,12 @@ feature 'Wiki creation', type: :feature do
     fill_in "Password", with: "test-password"
     click_button "Log in"
 
-    # localhost:3000/wikis  wikis#index
+    # localhost/wikis/new  wikis#index
     expect(page).to have_content("Hello test@email.com")
     expect(current_path).to eq(wikis_path)
     click_link "New wiki"
 
-    # localhost:3000/wikis/new  wikis#new controller#action pair
+    # localhost/wikis/new  wikis#new controller#action pair
     expect(page).to have_css("h1", text: "Create new wiki")
     expect(current_path).to eq(new_wiki_path)
     fill_in "Title", with: "Sports"

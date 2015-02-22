@@ -6,7 +6,7 @@ FactoryGirl.define do
     end
 
     sequence(:email) { |n| "user#{n}@example.tld" }
-    password  "test password"
+    password  "test-password"
 
     before(:create) do |user, evaluator|
       user.skip_confirmation! if evaluator.skip_confirmation

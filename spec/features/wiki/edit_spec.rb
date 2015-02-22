@@ -5,10 +5,8 @@ feature 'Wiki edit/update', type: :feature do
   scenario "edit/update wiki entry" do
 
     # test data creation
-    create(:user, email: "test@email.com", password: "test-password")
-    create(:wiki, title: "Sports", body: "Sports content for all your sporting needs.")
-
-    wiki = Wiki.last
+    user = create(:user, email: "test@email.com", password: "test-password")
+    wiki = create(:wiki, title: "Sports", body: "Sports content for all your sporting needs.", user_id: user.id )
 
     # localhost:3000/users/sign_in
     visit new_user_session_path
