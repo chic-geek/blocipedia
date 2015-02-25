@@ -15,8 +15,9 @@ feature "User Authentication", :type => :feature do
     fill_in "Password", with: "test-password"
     click_button "Log in"
 
-    expect(current_path).to eq("/")
+    expect(current_path).to eq(wikis_path)
     expect(page).to have_content("Hello test@email.com")
+    expect(page).to have_css(".user-info", text: "(Standard account)")
     click_link "Sign out"
 
     expect(current_path).to eq("/")
@@ -49,7 +50,7 @@ feature "User Authentication", :type => :feature do
     fill_in "Confirm new password", with: "new-password"
     click_button "Update"
 
-    expect(current_path).to eq("/")
+    expect(current_path).to eq(wikis_path)
     expect(page).to have_content("Your password has been changed successfully. You are now signed in.")
     expect(page).to have_content("Hello test@email.com")
   end
