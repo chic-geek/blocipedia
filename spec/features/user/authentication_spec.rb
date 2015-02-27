@@ -2,31 +2,32 @@ require 'rails_helper'
 
 feature "User Authentication", :type => :feature do
 
-  # Scenario with valid details
-  scenario "logs in and then out with valid details" do
-    create(:user, email: "test@email.com", password: "test-password")
+  context 'with valid details' do
+    scenario "user logs in / out" do
+      create(:user, email: "test@email.com", password: "test-password")
 
-    visit "/"
-    click_link "Sign in"
+      visit "/"
+      click_link "Sign in"
 
-    expect(current_path).to eq(new_user_session_path)
+      expect(current_path).to eq(new_user_session_path)
 
-    fill_in "Email", with: "test@email.com"
-    fill_in "Password", with: "test-password"
-    click_button "Log in"
+      fill_in "Email", with: "test@email.com"
+      fill_in "Password", with: "test-password"
+      click_button "Log in"
 
-    expect(current_path).to eq(wikis_path)
-    expect(page).to have_content("Hello test@email.com")
-    expect(page).to have_css(".user-info", text: "(Standard account)")
-    click_link "Sign out"
+      expect(current_path).to eq(wikis_path)
+      expect(page).to have_content("Hello test@email.com")
+      expect(page).to have_css(".user-info", text: "(Standard account)")
+      click_link "Sign out"
 
-    expect(current_path).to eq("/")
-    expect(page).to have_content("Signed out successfully.")
-    expect(page).not_to have_content("Hello test@email.com")
+      expect(current_path).to eq("/")
+      expect(page).to have_content("Signed out successfully.")
+      expect(page).not_to have_content("Hello test@email.com")
 
+    end
   end
 
-  scenario "forgotten password" do
+  scenario "user has forgotten password" do
     create(:user, email: "test@email.com", password: "test-password")
 
     visit "/"

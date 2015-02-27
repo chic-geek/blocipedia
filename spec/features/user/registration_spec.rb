@@ -2,8 +2,6 @@ require 'rails_helper'
 
 feature 'User registration', :type => :feature do
 
-  ## With VALID details
-  ## =========================================================================
   scenario 'with valid details' do
     visit '/'
     click_link 'Sign up'
@@ -20,31 +18,29 @@ feature 'User registration', :type => :feature do
     expect(page).to have_content 'Your email address has been successfully confirmed.'
   end
 
-  ## With INVALID details
-  ## =========================================================================
-  context 'invalid details' do
+  context 'with invalid details' do
     before do
       visit new_user_registration_path
     end
 
-    scenario 'with blank fields' do
+    scenario 'has blank fields' do
       expect_blank_fields
       click_button 'Sign up'
       expect_error_msgs "Email can't be blank", "Password can't be blank"
     end
 
-    scenario 'with invalid email address' do
+    scenario 'has invalid email address' do
       fill_out_form('invalid-email', 'password', 'password')
       expect_error_msgs "Email is invalid"
     end
 
-    scenario 'with a pre-existing email address' do
+    scenario 'has a pre-existing email address' do
       create(:user, email: "test2@email.com")
       fill_out_form('test2@email.com', 'test-password', 'test-password')
       expect_error_msgs "Email has already been taken"
     end
 
-    scenario 'with incorrect password confirmation' do
+    scenario 'has incorrect password confirmation' do
       fill_out_form('test@email.com', 'test-password', 'wrong-test-password')
       expect_error_msgs "Password confirmation doesn't match Password"
     end
