@@ -4,11 +4,13 @@ class WikisController < ApplicationController
   ## create
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
     @wiki.user_id = current_user.id
+    authorize @wiki
     if @wiki.save
       redirect_to @wiki, notice: "Your wiki has been created"
     else
@@ -22,7 +24,7 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.find(params[:id])
   end
 
   ## update
@@ -32,6 +34,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = current_user.wikis.find(params[:id])
+    authorize @wiki
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
       redirect_to wiki_path(@wiki), notice: "Your wiki entry has been updated!"
     else

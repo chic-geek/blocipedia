@@ -1,4 +1,13 @@
-%h1 Welcome to Blocipedia
-%p
-  An application that allows users to create public
-  and private markdown-based wikis.
+.row
+  .col-md-12
+
+    %h1 All Wikis
+
+    .row
+      .col-md-8
+
+        - @wikis.each do |wiki|
+          .media
+            .media-body
+              %h4.media-heading
+                = link_to wiki.title, wiki
