@@ -26,7 +26,7 @@ class ApplicationPolicy
   end
 
   def update?
-    # a user needs to be either the record's owner or the general
+    # a user needs to be either the record's (wiki's) owner or the general
     # administrator, on top of being present and logged-in
     user.present? && (record.user == user || user.admin?)
   end

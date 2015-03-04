@@ -25,6 +25,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   ## update
@@ -45,6 +46,7 @@ class WikisController < ApplicationController
   ## delete
   def destroy
     @wiki = current_user.wikis.find(params[:id])
+    authorize @wiki
     @wiki.destroy
     redirect_to wikis_path, :notice => "Your wiki has been deleted."
   end
