@@ -8,7 +8,7 @@
 #
 # 2. Create a file like this one you're reading in spec/support/shoulda-matchers.rb:
 require 'shoulda/matchers'
-require 'pundit/rspec'
+require 'pundit/rspec' # Eliot sent a message regarding this `message_threads/65282`
 
 
 # 3. Start using shoulda-matchers. See specs in this project for examples.
