@@ -1,3 +1,6 @@
 ## These ENV vars are being used in this application:
 SENDGRID_USER:
 SENDGRID_PASSWORD:
+
+STRIPE_PUBLISHABLE_KEY: 
+STRIPE_SECRET_KEY:
