@@ -1,0 +1,4 @@
+= form_tag charges_path do
+  %h4 Click the button!
+  %script.stripe-button{"data-amount" => "500", "data-description" => "A month's subscription", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/checkout.js"}
+    :cdata
