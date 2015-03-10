@@ -7,14 +7,18 @@ class User < ActiveRecord::Base
   has_many :wikis
 
   def standard?
-    role == "Standard"
+    role == "standard"
   end
 
   def premium?
-    role == "Premium"
+    role == "premium"
   end
 
   def admin?
-    role == "Admin"
+    role == "admin"
+  end
+
+  def upgrade_to_premium
+    update_attributes(role: "premium")
   end
 end
