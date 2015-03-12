@@ -18,7 +18,7 @@
 
           .pull-right.user-info
             - if user_signed_in?
-              %strong Hey #{current_user.first_name} #{current_user.last_name} &ndash;
+              %strong Hey #{current_user.email} &ndash;
               #{link_to "Account details | ", edit_user_registration_path}
               #{link_to "Sign out", destroy_user_session_path, method: :delete}
             - else

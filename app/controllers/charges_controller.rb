@@ -16,19 +16,11 @@ class ChargesController < ApplicationController
     )
 
     current_user.upgrade_to_premium
-    flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+    flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
     redirect_to edit_user_registration_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
-  end
-
-  def new
-    @stripe_btn_data = {
-      key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "Blocipedia membership - #{current_user.name}",
-      amount: 500
-    }
   end
 end

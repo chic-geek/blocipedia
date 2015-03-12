@@ -36,7 +36,7 @@
       %h4 Account type: #{current_user.role}
       %p Upgrade your account for access to private wikis.
       = form_tag charges_path do
-        %script.stripe-button{"data-amount" => "500", "data-description" => "Blocipedia membership", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/checkout.js"}
+        %script.stripe-button{"data-amount" => @stripe_btn_data[:amount], "data-description" => @stripe_btn_data[:description], "data-key" => @stripe_btn_data[:key], :src => "https://checkout.stripe.com/checkout.js"}
           :cdata
 
 

@@ -13,9 +13,9 @@ feature 'wiki', type: :feature do
     click_button "Log in"
 
     # localhost/wikis/new  wikis#index
-    expect(page).to have_content("Hello test@email.com")
+    expect(page).to have_content("Hey test@email.com")
     expect(current_path).to eq(wikis_path)
-    click_link "New wiki"
+    click_link "Public wiki" || "Private wiki"
 
     # localhost/wikis/new  wikis#new controller#action pair
     expect(page).to have_css("h1", text: "Create new wiki")
