@@ -4,13 +4,10 @@ feature 'wiki', type: :feature do
 
   scenario "creates a wiki entry" do
     # test data creation
-    create(:user, email: "test@email.com", password: "test-password")
+    user = create(:user, email: "test@email.com", password: "test-password")
 
     # localhost:3000/users/sign_in
-    visit new_user_session_path
-    fill_in "Email", with: "test@email.com"
-    fill_in "Password", with: "test-password"
-    click_button "Log in"
+    sign_in(user.email, user.password)
 
     # localhost/wikis/new  wikis#index
     expect(page).to have_content("Hey test@email.com")
@@ -37,10 +34,7 @@ feature 'wiki', type: :feature do
     wiki = create(:wiki, title: "Sports", body: "Sports content for all your sporting needs.", user_id: user.id )
 
     # localhost:3000/users/sign_in
-    visit new_user_session_path
-    fill_in "Email", with: "test@email.com"
-    fill_in "Password", with: "test-password"
-    click_button "Log in"
+    sign_in(user.email, user.password)
 
     # localhost:3000/wikis
     expect(page).to have_content(wiki.title)
@@ -66,10 +60,7 @@ feature 'wiki', type: :feature do
     wiki = create(:wiki, title: "Sports", body: "Sports content for all your sporting needs.", user_id: user.id )
 
     # localhost:3000/users/sign_in
-    visit new_user_session_path
-    fill_in "Email", with: "test@email.com"
-    fill_in "Password", with: "test-password"
-    click_button "Log in"
+    sign_in(user.email, user.password)
 
     # localhost:3000/wikis
     expect(page).to have_content(wiki.title)
@@ -80,4 +71,13 @@ feature 'wiki', type: :feature do
     expect(current_path).to eq(wikis_path)
     expect(page).to have_content("Your wiki has been deleted.")
   end
+
+  private
+
+    def sign_in(email, password)
+      visit new_user_session_path
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+      click_button "Log in"
+    end
 end
