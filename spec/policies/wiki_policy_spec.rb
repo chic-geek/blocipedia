@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe WikiPolicy do
-
-  let(:user) { User.new }
-
   subject { WikiPolicy }
 
   permissions :create? do

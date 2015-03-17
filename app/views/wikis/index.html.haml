@@ -2,8 +2,11 @@
   .col-md-12
     %h1 My Wikis
 
-    .well.well-sm
-      = link_to "New wiki", new_wiki_path, class: "btn btn-primary btn-sm"
+    .well.well-sm.tight-heading
+      %h4 Create wiki's:
+      = link_to "Public wiki", new_wiki_path, class: "btn btn-primary btn-sm"
+      - if current_user.standard?
+        = link_to "Private wiki", new_wiki_path, class: "btn btn-primary btn-sm disabled"
 
     .list-group
       - @wikis.each do |wiki|

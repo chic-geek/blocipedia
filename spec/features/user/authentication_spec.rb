@@ -16,13 +16,13 @@ feature "User Authentication", :type => :feature do
       click_button "Log in"
 
       expect(current_path).to eq(wikis_path)
-      expect(page).to have_content("Hello test@email.com")
-      expect(page).to have_css(".user-info", text: "(Standard account)")
+      expect(page).to have_content("Hey test@email.com")
+      expect(page).to have_css(".user-info", text: "Account details")
       click_link "Sign out"
 
       expect(current_path).to eq("/")
       expect(page).to have_content("Signed out successfully.")
-      expect(page).not_to have_content("Hello test@email.com")
+      expect(page).not_to have_content("Hey test@email.com")
 
     end
   end
@@ -53,6 +53,6 @@ feature "User Authentication", :type => :feature do
 
     expect(current_path).to eq(wikis_path)
     expect(page).to have_content("Your password has been changed successfully. You are now signed in.")
-    expect(page).to have_content("Hello test@email.com")
+    expect(page).to have_content("Hey test@email.com")
   end
 end

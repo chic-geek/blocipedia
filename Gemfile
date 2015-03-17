@@ -18,6 +18,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc               # bundle exec rake doc:rails g
 gem 'devise'                                      # Installing devise
 gem 'figaro', '1.1.0'                             # Install figaro for ENV vars
 gem 'pundit'                                      # Pundit gives the ability to declare access rights (authorisation)
+gem 'stripe'                                      # Integrate the popular Stripe payment gateway API.
 
 # gem 'therubyracer', platforms: :ruby            # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'bcrypt', '~> 3.1.7'                        # Use ActiveModel has_secure_password
@@ -45,6 +46,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do
