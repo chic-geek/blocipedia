@@ -19,7 +19,7 @@ require 'faker'
     last_name:  Faker::Name.name,
     email:      Faker::Internet.email,
     password:   Faker::Lorem.characters(10),
-    role:     'Standard'
+    role:     'standard'
   )
   user.skip_confirmation!
   user.save!
@@ -30,7 +30,7 @@ testuserone = User.new(
   last_name:  'One',
   email:      'testuserone@test.com',
   password:   'testuserone',
-  role:       'Standard'
+  role:       'standard'
 )
 testuserone.skip_confirmation!
 testuserone.save!
@@ -40,7 +40,7 @@ testusertwo = User.new(
   last_name:  'Two',
   email:      'testusertwo@test.com',
   password:   'testusertwo',
-  role:       'Standard'
+  role:       'standard'
 )
 testusertwo.skip_confirmation!
 testusertwo.save!
@@ -50,7 +50,7 @@ testuserthree = User.new(
   last_name:  'Three',
   email:      'testuserthree@test.com',
   password:   'testuserthree',
-  role:       'Standard'
+  role:       'standard'
 )
 testuserthree.skip_confirmation!
 testuserthree.save!
