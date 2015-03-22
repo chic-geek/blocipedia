@@ -12,7 +12,7 @@
 
       - if current_user.role == 'admin' || current_user.role == 'premium'
         .checkbox
-          = f.select :private, [[false, :public], [true, :private]]
+          = f.select :private, [["Public", false], ["Private", true]]
           -# = f.label :private do
           -#   = f.check_box :private
           -#   Check to make private wiki
