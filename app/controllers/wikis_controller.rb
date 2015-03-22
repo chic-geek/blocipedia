@@ -8,7 +8,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
+    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :private))
     @wiki.user_id = current_user.id
     authorize @wiki
     if @wiki.save
@@ -20,7 +20,8 @@ class WikisController < ApplicationController
 
   ## read
   def index
-    @wikis = current_user.wikis
+    @wikis = Wiki.visible_to(current_user)
+    # @wikis = current_user.wikis
   end
 
   def show
@@ -30,13 +31,13 @@ class WikisController < ApplicationController
 
   ## update
   def edit
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.visible_to(current_user).find(params[:id])
   end
 
   def update
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.visible_to(current_user).find(params[:id])
     authorize @wiki
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
       redirect_to wiki_path(@wiki), notice: "Your wiki entry has been updated!"
     else
       render "edit"
@@ -45,7 +46,7 @@ class WikisController < ApplicationController
 
   ## delete
   def destroy
-    @wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.visible_to(current_user).find(params[:id])
     authorize @wiki
     @wiki.destroy
     redirect_to wikis_path, :notice => "Your wiki has been deleted."
