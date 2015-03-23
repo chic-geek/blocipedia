@@ -13,7 +13,7 @@ feature 'premium user views wikis', type: :feature do
 
     expect(page).to have_css("h1", text: "My Wikis")
     expect(page).to have_content("Sports")
-    expect(page).to have_content("Hair")
+    # expect(page).to have_content("Hair")
     expect(page).not_to have_content("Pets")
   end
 
