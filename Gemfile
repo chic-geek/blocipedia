@@ -19,6 +19,7 @@ gem 'devise'                                      # Installing devise
 gem 'figaro', '1.1.0'                             # Install figaro for ENV vars
 gem 'pundit'                                      # Pundit gives the ability to declare access rights (authorisation)
 gem 'stripe'                                      # Integrate the popular Stripe payment gateway API.
+gem 'redcarpet'                                   # Markdown gem for editing content in MD.
 
 # gem 'therubyracer', platforms: :ruby            # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'bcrypt', '~> 3.1.7'                        # Use ActiveModel has_secure_password
