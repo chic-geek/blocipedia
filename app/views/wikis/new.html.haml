@@ -10,7 +10,7 @@
         = f.label :body
         = f.text_area :body, class: "form-control"
 
-      - if current_user.role == 'admin' || current_user.role == 'premium'
+      - if current_user.admin? || current_user.premium?
         .form-group
           = f.label "Wiki visibility"
           %br
