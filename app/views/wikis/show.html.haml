@@ -1,4 +1,7 @@
 .row
-  .col-md-12
+  .col-md-8
     %h1= @wiki.title
     %div= @wiki.body
+    %br
+    - if current_user
+      = link_to "Edit wiki", edit_wiki_path, class: "btn btn-primary"

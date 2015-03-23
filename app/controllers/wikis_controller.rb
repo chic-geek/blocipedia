@@ -20,8 +20,8 @@ class WikisController < ApplicationController
 
   ## read
   def index
-    @wikis = Wiki.visible_to(current_user)
-    # @wikis = current_user.wikis
+    # @wikis = Wiki.visible_to(current_user)
+    @wikis = current_user.wikis
   end
 
   def show

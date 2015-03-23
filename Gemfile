@@ -56,4 +56,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails', '~> 4.5'
   gem 'capybara'
+  gem 'rails-erd'                                 # Rails-ERD; a gem for visually representing db table schema and relationships.
 end

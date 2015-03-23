@@ -4,4 +4,5 @@
 
     .list-group
       - @wikis.each do |wiki|
-        = link_to wiki.title, wiki, class: 'list-group-item'
+        - if wiki.private == false
+          = link_to wiki.title, wiki, class: 'list-group-item'

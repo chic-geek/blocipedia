@@ -8,12 +8,15 @@
 
         .list-group-item
           - if wiki.private?
-            %span.glyphicon.glyphicon-lock.text-muted
+            %span.glyphicon.glyphicon-eye-close.text-muted
+            \&nbsp;
+          - else
+            %span.glyphicon.glyphicon-eye-open.text-success
             \&nbsp;
           = link_to wiki.title, wiki
 
           .pull-right
-            = link_to "", edit_wiki_path(wiki), class: "glyphicon glyphicon-edit text-muted", title: "edit-item"
+            = link_to "", edit_wiki_path(wiki), class: "glyphicon glyphicon-edit text-primary", title: "edit-item"
             \&nbsp;
             = link_to "", wiki, class: "glyphicon glyphicon-trash text-danger", title: "delete-item", :method => :delete
 
