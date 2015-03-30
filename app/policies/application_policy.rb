@@ -43,18 +43,11 @@ class ApplicationPolicy
     # default pundit scope class, this is removed for the bloccit app
     # ask eliot to explain this a little better than bloc has and
     # whether or not changing this helped?
-    # Pundit.policy_scope!(user, record.class)
-    record.class
+    Pundit.policy_scope!(user, record.class)
+    # record.class
   end
 
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
+  class Scope < Struct.new(:user, :scope)
     def resolve
       scope
     end

@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.public_wikis
   end
 end

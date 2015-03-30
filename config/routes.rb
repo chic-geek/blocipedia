@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'collaborations/index'
+
   resources :charges, only: [:create]
   resources :wikis do
     resources :collaborations

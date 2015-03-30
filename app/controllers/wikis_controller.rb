@@ -1,5 +1,7 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:show]
+  after_filter :verify_authorized, except: [:index]
+  after_filter :verify_policy_scoped, only: [:index]
 
   ## create
   def new
@@ -20,8 +22,7 @@ class WikisController < ApplicationController
 
   ## read
   def index
-    # @wikis = Wiki.visible_to(current_user)
-    @wikis = current_user.wikis
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -31,11 +32,12 @@ class WikisController < ApplicationController
 
   ## update
   def edit
-    @wiki = Wiki.visible_to(current_user).find(params[:id])
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
-    @wiki = Wiki.visible_to(current_user).find(params[:id])
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
       redirect_to wiki_path(@wiki), notice: "Your wiki entry has been updated!"
@@ -46,7 +48,7 @@ class WikisController < ApplicationController
 
   ## delete
   def destroy
-    @wiki = Wiki.visible_to(current_user).find(params[:id])
+    @wiki = Wiki.find(params[:id])
     authorize @wiki
     @wiki.destroy
     redirect_to wikis_path, :notice => "Your wiki has been deleted."
