@@ -1,0 +1,13 @@
+.row
+  .col-md-6.col-md-offset-3
+    %h1 Wiki collaboration
+    %p Enter the email address of the person you'd like to collaborate on this wiki with.
+
+    = form_tag wiki_collaborations_path(@wiki) do
+      .form-group
+        = label_tag :email
+        = email_field_tag :email, nil, class: "form-control"
+        -# nil is required as it's the value="" on the input: http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html#method-i-email_field_tag 
+
+      .form-group
+        = submit_tag "Collaborate", class: "btn btn-success"

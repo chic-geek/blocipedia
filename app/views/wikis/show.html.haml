@@ -3,5 +3,7 @@
     %h1= @wiki.title
     %div= markdown_to_html @wiki.body
     %br
+
     - if current_user
       = link_to "Edit wiki", edit_wiki_path, class: "btn btn-primary"
+      = link_to "Collaborate", new_wiki_collaboration_path(@wiki), class: "btn btn-primary"
