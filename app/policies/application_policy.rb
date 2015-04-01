@@ -47,7 +47,14 @@ class ApplicationPolicy
     # record.class
   end
 
-  class Scope < Struct.new(:user, :scope)
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
     def resolve
       scope
     end
