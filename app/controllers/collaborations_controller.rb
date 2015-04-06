@@ -14,4 +14,11 @@ class CollaborationsController < ApplicationController
 
     redirect_to wiki, notice: "Collaborator #{user.email} added!"
   end
+
+  def destroy
+    collaboration = Collaboration.find(params[:id])
+    authorize collaboration
+    collaboration.destroy
+    redirect_to collaboration.wiki, notice: "No longer collaborting with #{collaboration.user.email}"
+  end
 end

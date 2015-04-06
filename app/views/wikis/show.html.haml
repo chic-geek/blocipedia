@@ -4,6 +4,12 @@
     %div= markdown_to_html @wiki.body
     %br
 
+    .collaborators
+      %h3 Collaborators
+      - @wiki.collaborations.each do |collaboration|
+        %p= collaboration.user.email
+        = link_to "Delete collaborator", wiki_collaboration_path(@wiki, collaboration), method: :delete
+
     - if current_user
       = link_to "Edit wiki", edit_wiki_path, class: "btn btn-primary"
       = link_to "Collaborate", new_wiki_collaboration_path(@wiki), class: "btn btn-primary"
