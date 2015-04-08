@@ -13,18 +13,20 @@ class WikiPolicy < ApplicationPolicy
 
   def public_or_visible
     return true unless record.private?
-
     user.present? && (record.user == user || user.admin?)
   end
 
   class Scope < Scope
     def resolve
       if user
+        # .joins is where we join two tables together, `left outer join` is where we are more forgiving
+        # toward the left table which in this instance is the wikis table, meaning rows won't be removed
+        # even if the don't make the cut, see the table but they should be displayed as `null` in the db.
+        scope.joins('left outer join collaborations on wikis.id = collaborations.wiki_id').where("collaborations.user_id = ? OR wikis.user_id = ? OR wikis.private = ?", user, user, false)
+
+        # example:
         # replace ?'s with false, true and user.id respectively.
         # where("(private = ?) OR (private = ? AND user_id = ?)", false, true, user.id)
-        # scope.where("user_id = ?", user.id)
-        # scope.joins(:collaborations).where("collaborations.user_id = ? OR wikis.user_id = ?", user, user)
-        scope.joins('left outer join collaborations on wikis.id = collaborations.wiki_id').where("collaborations.user_id = ? OR wikis.user_id = ? OR wikis.private = ?", user, user, false)
       else
         scope.where(private: false)
       end

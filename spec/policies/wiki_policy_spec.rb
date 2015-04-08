@@ -20,8 +20,8 @@ describe WikiPolicy do
   end
 
   permissions :show? do
-    it "allows access to anonymous users" do
-      expect(subject).to permit(nil, create(:wiki))
+    it "prevents access to anonymous users" do
+      expect(subject).not_to permit(nil, create(:wiki))
 
       # to simulate an anonymous user, don't pass in a user object,
       # instead pass in nil.
