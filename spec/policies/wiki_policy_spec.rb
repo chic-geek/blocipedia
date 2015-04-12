@@ -50,10 +50,9 @@ describe WikiPolicy do
     # it "prevents attacker from viewing victims collaborated wiki" do
     # end
 
-    it "prevents access to anonymous users" do
+    it "prevents anonymous user creating wiki" do
       # expect the WikiPolicy to not permit an anonymous user to create a wiki.
-      # to simulate an anonymous user, don't pass in a user object,
-      # instead pass in nil.
+      # to simulate an anonymous user, don't pass in a user object, # instead pass in nil.
       expect(subject).not_to permit(nil, create(:wiki))
     end
   end
