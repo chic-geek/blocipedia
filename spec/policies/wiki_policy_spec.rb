@@ -20,11 +20,41 @@ describe WikiPolicy do
   end
 
   permissions :show? do
-    it "prevents access to anonymous users" do
-      expect(subject).not_to permit(nil, create(:wiki))
+    it "allows anonymous user to view public wiki" do
+      public_wiki = create(:wiki, private: false)
+      expect(subject).to permit(nil, public_wiki)
+    end
 
+    it "prevents anonymous user viewing private wiki" do
+      private_wiki = create(:wiki, private: true)
+      expect(subject).not_to permit(nil, private_wiki)
+    end
+
+    it "allows owner to view owned wiki" do
+      owner = create(:user)
+      owned_wiki = create(:wiki, user: owner)
+      expect(subject).to permit(owner, owned_wiki)
+    end
+
+    it "prevents attacker from viewing victims owned wiki" do
+      owner = create(:user)
+      attacker = create(:user)
+      owned_wiki = create(:wiki, user: owner)
+      expect(subject).to permit(owner, owned_wiki)
+      expect(subject).not_to permit(attacker, owned_wiki)
+    end
+
+    # it "allows collaborator to view collaborated wiki" do
+    # end
+    #
+    # it "prevents attacker from viewing victims collaborated wiki" do
+    # end
+
+    it "prevents access to anonymous users" do
+      # expect the WikiPolicy to not permit an anonymous user to create a wiki.
       # to simulate an anonymous user, don't pass in a user object,
       # instead pass in nil.
+      expect(subject).not_to permit(nil, create(:wiki))
     end
   end
 
