@@ -45,8 +45,13 @@ describe WikiPolicy do
     end
 
     # it "allows collaborator to view collaborated wiki" do
+    #   collaborator = create(:user)
+    #   collaborated_wiki = create(:wiki)
+    #   # Create the association between the 2 objects above to create the 'collaboration'.
+    #   Collaboration.create!(wiki: collaborated_wiki, user: collaborator)
+    #   expect(subject).to permit(collaborator, collaborated_wiki)
     # end
-    #
+
     # it "prevents attacker from viewing victims collaborated wiki" do
     # end
 
